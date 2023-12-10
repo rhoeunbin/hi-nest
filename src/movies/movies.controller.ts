@@ -7,39 +7,39 @@ import {
   Patch,
   Body,
 } from '@nestjs/common';
-import { MovieService } from './movie.service';
+import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entitiy';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movie')
-export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+export class MoviesController {
+  constructor(private readonly moviesService: MoviesService) {}
 
   @Get()
   getAll(): Movie[] {
-    return this.movieService.getAll();
+    return this.moviesService.getAll();
   }
 
   @Get(':id')
   getOne(@Param('id') movieId: number): Movie {
     console.log(typeof movieId);
-    return this.movieService.getOne(movieId);
+    return this.moviesService.getOne(movieId);
   }
 
   @Post()
   create(@Body() movieData: CreateMovieDto) {
-    return this.movieService.create(movieData);
+    return this.moviesService.create(movieData);
   }
 
   @Delete(':id')
   remove(@Param('id') movieId: number) {
-    return this.movieService.deleteOne(movieId);
+    return this.moviesService.deleteOne(movieId);
   }
 
   @Patch(':id') // 일부분만 수정할 때
   patch(@Param('id') movieId: number, @Body() updateData: UpdateMovieDto) {
     // body 꼭 요청해야 함
-    return this.movieService.update(movieId, updateData);
+    return this.moviesService.update(movieId, updateData);
   }
 }

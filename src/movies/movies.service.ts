@@ -4,7 +4,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
-export class MovieService {
+export class MoviesService {
   private movies: Movie[] = [];
 
   getAll(): Movie[] {
